@@ -1,0 +1,17 @@
+Mathe 17
+Konsolidierung 23
+Englisch 23
+Detusch 3
+Physik 31
+Erdkunde 27
+Geschichte 50
+Sport 60
+Digitaltechnick 1
+FMSM 175
+SM2 gut
+Programmiertechnik xy
+Naturwissenschaften 40
+Biologie x,0
+Stochastik x3
+Markenmanagement 1,y
+Elektrotechnik 2y

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"aufgabe1"},{"l":"aufgabe2"},{"l":"aufgabe3"},{"l":"aufgabe4"},{"l":"aufgabe5"},{"l":"aufgabe6"},{"l":"einstieg"}]

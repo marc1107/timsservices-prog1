@@ -1,0 +1,248 @@
+Aufgabe 1:
+
+a)  int x = 0b1101011;
+    int x = 0153;
+    int x = 0x6B;
+    float x = 107f;
+
+b)  -107 = 1111111110010101
+
+c)  0,01010101...
+
+
+
+Aufgabe 2:
+
+a)  a = 1 / 2      -> int       -> 0
+    b = 3 - 4.5    -> double    -> -1.5
+    c = 6 == 7     -> boolean   -> false
+    d = "89" + '0' -> String    -> "890"
+
+b)  Werttyp: int
+    Referenztyp: String
+
+c)  Alles in Java ist ein Object. Einem Object kann alles zugewiesen werden.
+    Upcast zu Object
+    Autoboxing zu Integer. (x = Integer.valueOf(1);)
+
+d)  -> Integer.toString(Integer)
+    -> ObjectName.toString()
+
+
+
+Aufgabe 3:
+
+a)  b++ -> c-- -> b + c -> >>> 1 -> a = 
+
+b)  a = 25
+    b = 21
+    c = 29
+
+
+Aufgabe 4:
+
+a)  private static Integer max(final Integer n, final Integer m) { 
+        if (n.intValue() > m.intValue()) {
+            return n;
+        }  
+        return m; 
+    } 
+
+
+b)  private static Integer max(final Integer... zahlen) {
+        Integer m;
+
+        if(zahlen.length == 0) {
+            m = null;
+        } else if(zahlen.length == 1) {
+            m = zahlen[0];
+        } else {
+            m = zahlen[0];
+            for(int i = 1; i < zahlen.length; i++) {
+                m = max(m, zahlen[i]);
+            }
+        }
+        return m;
+    }   
+
+
+c)  {
+        int i = 1;
+        while(i < zahlen.length) {
+            m = max(m, zahlen[i]);
+            i++;
+        }
+    }
+    
+d)  5: zweite   -> null
+    6: zweite   -> 1
+    7: erste    -> 3
+    8: zweite   -> 6
+
+e)  max(4,5,6); -> max(new Integer[] { Integer.valueOf(4), Integer.valueOf(5), Integer.valueOf(6) });
+
+
+Aufgabe 5:
+
+
+a)  Sie muss in einem Ordner namens "aufgab5" liegen und "Beispiel.java" heißen.
+    (package aufgabe5)
+
+b)  
+    package aufgabe5;
+    public final class Beispiel {
+
+        private Beispiel() {}
+
+        public static final int KONSTANTE = 5;
+        public static int variable;
+
+        public static int methode() {
+            return 0;
+        }
+
+        public static int methode(int i) {
+            return i;
+        }
+    }
+
+c)  Methoden können den gleichen Namen haben wenn ihre Parameter unterschiedlich sind.
+    In dem Fall der Klasse Beispiel keinen- oder einen Parameter.
+
+d)  ->  import aufgabe5;
+    ->  import static aufgabe5.Beispiel.KONSTANTE;
+
+
+Aufgabe 6:
+
+
+a)  public class Aufgabe {
+
+        private String titel;
+        private int[] punkte;
+
+        public Aufgabe(String titel, int[] punkte) {
+            if (!Valid(punkte) || titel == null)
+                throw new IllegalArgumentException("Punkt kleiner oder gleich 0");
+
+            this.titel = titel;
+            this.punkte = punkte;
+        }
+
+        private boolean Valid(int[] punkte) {
+            for(int n : punkte) {
+                if(n <= 0)
+                    return false;
+            }
+
+            if(punkte == null || punkte.length <= 0)
+                return false;
+
+            return true;
+        }
+
+        public int getAnzahlTeile() {
+            return this.punkte.length;
+        }
+
+        public String getTitel() {
+            return this.titel;
+        }
+
+        public int getGesamtPunkte() {
+            int sum = 0;
+            for(int n : this.punkte) {
+                sum += n;
+            }
+            return sum;
+        }
+    }
+
+b)  this steht für das Objekt bzw. die Instanz selber in der es verwendet wird.
+    this kann nur in Instanzmethoden verwendet werden und ist zudem ein Parameter einer solchen.
+    Hier wird verwendet um auf die attribute "titel" und "punkte" des Obekts zuzugreifen.
+
+c)  new StringBuilder("Aufgabe ").append(Integer.valueOf(i + 1).toString()).toString();
+    oder
+    new StringBuilder().append("Aufgabe ").append(Integer.valueOf(i + 1).toString()).toString();
+
+Aufgabe 7:
+
+a)  Vererbung, Polymorphie, Kapselung, Dynamische Bindung
+
+b)  Vererbung:      public class B extends A{
+                        public void foo() {
+                            super.Test(); // Aufruf einer Methode aus Oberklasse
+                        }
+                    }
+    
+    Polymorphie:    Number n = Integer.valueOf("10"); // Upcast
+    
+    Kapselung:      private int x;
+                    protected double y;
+                    
+                    Kapselung durch Zugrifmodifier. Es kann nur innerhalb der Klasse bzw.
+                    innerhalb des package auf die Variable zugegriffen werden.
+    
+    
+    Dynamische:     Number n;   
+    Bindung         if(...) {
+                        n = Integer.valueOf(10);
+                    } else {
+                        n = Double.valueOf(10);
+                    }
+                    int i = n.intValue();
+    
+
+
+Aufgabe 8:
+
+public final class GermanComperator implements Comperator<String> {
+    public GermanComperator() {}
+
+    private static String normalize(String s) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for(char c : s) {
+
+            char newc = Character.toUpper(c);
+
+            switch(newc) {
+                
+                case 'Ä':
+                    sb.append('A');
+                    break;
+
+                case 'Ü':
+                    sb.append('U');
+                    break;
+                
+                case 'Ö':
+                    sb.append('O');
+                    break;
+
+                case: 'ß':
+                    sb.append("SS");
+                    break;
+                    
+                default:
+                    sb.append(newc);
+                    break;
+            }
+        }
+
+        return sb.toString();
+    }
+
+    @Override
+    int compare(String s1, String s2) {
+        s1 = GermanComperator.normalize(s1);
+        s2 = GermanComperator.normalize(s2);
+        
+        return s1.compareTo(s2);
+    }
+}
+
+
+
